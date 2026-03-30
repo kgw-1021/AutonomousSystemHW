@@ -123,13 +123,13 @@ def main():
     plt.subplot(2, 1, 1)
     plt.plot(time_axis, Y_exact[:, 0], 'b-', linewidth=2.5, label='Exact MPC (qpOASES): $y_1$')
     plt.plot(time_axis, Y_exact[:, 1], 'r-', linewidth=2.5, label='Exact MPC (qpOASES): $y_2$')
-    plt.plot(time_axis, Y_ml[:, 0], 'c--', linewidth=2, label='PyTorch ML: $y_1$')
-    plt.plot(time_axis, Y_ml[:, 1], 'm--', linewidth=2, label='PyTorch ML: $y_2$')
-    
+    plt.plot(time_axis, Y_ml[:, 0], 'c--', linewidth=2, label='Supervised Learning: $y_1$')
+    plt.plot(time_axis, Y_ml[:, 1], 'm--', linewidth=2, label='Supervised Learning: $y_2$')
+
     plt.plot(time_axis, R_ref_history[:, 0], 'b:', linewidth=2, alpha=0.7, label='Ref $r_1$')
     plt.plot(time_axis, R_ref_history[:, 1], 'r:', linewidth=2, alpha=0.7, label='Ref $r_2$')
 
-    plt.title('Output Responses (Step Tracking): qpOASES vs PyTorch ML', fontsize=14)
+    plt.title('Output Responses (Step Tracking): ActiveSet Based Solver vs Supervised Learning', fontsize=14)
     plt.ylabel('Outputs ($y_1, y_2$)', fontsize=12)
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend(loc='lower right')
@@ -138,17 +138,17 @@ def main():
     plt.subplot(2, 1, 2)
     plt.plot(time_axis, U_exact[:, 0], 'b-', linewidth=2.5, label='Exact MPC (qpOASES): $u_1$')
     plt.plot(time_axis, U_exact[:, 1], 'r-', linewidth=2.5, label='Exact MPC (qpOASES): $u_2$')
-    plt.plot(time_axis, U_ml[:, 0], 'c--', linewidth=2, label='PyTorch ML: $u_1$')
-    plt.plot(time_axis, U_ml[:, 1], 'm--', linewidth=2, label='PyTorch ML: $u_2$')
-    
+    plt.plot(time_axis, U_ml[:, 0], 'c--', linewidth=2, label='Supervised Learning: $u_1$')
+    plt.plot(time_axis, U_ml[:, 1], 'm--', linewidth=2, label='Supervised Learning: $u_2$')
+
     plt.axhline(1.0, color='k', linestyle='-', alpha=0.8, label='Max Limit (+1)')
     plt.axhline(-1.0, color='k', linestyle='-', alpha=0.8, label='Min Limit (-1)')
 
-    plt.title('Control Inputs: qpOASES vs PyTorch ML Approximation', fontsize=14)
+    plt.title('Control Inputs', fontsize=14)
     plt.xlabel('Time (sec)', fontsize=12)
     plt.ylabel('Control Inputs ($u_1, u_2$)', fontsize=12)
     plt.grid(True, linestyle='--', alpha=0.7)
-    plt.legend(loc='upper right')
+    plt.legend(loc='lower right')
 
     plt.tight_layout()
     plt.show()
